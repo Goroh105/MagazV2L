@@ -1,11 +1,11 @@
-package domain;
 
-public class Laptop {
-	
 	/**
 	 * Класс данных о ноутбуках
 	 */
 
+package domain;
+
+public class Laptop {
 	    private Long id;
 	    private Long model;
 	    private Float speed;
@@ -16,16 +16,6 @@ public class Laptop {
 	    private Integer count;
 
 	    public Laptop() {
-	    }
-
-	    public Laptop(Long model, Float speed, Integer ram, Integer hd, Float screen, Double price, Integer count) {
-	        this.model = model;
-	        this.speed = speed;
-	        this.ram = ram;
-	        this.hd = hd;
-	        this.screen = screen;
-	        this.price = price;
-	        this.count = count;
 	    }
 
 	    public Laptop(Long id, Long model, Float speed, Integer ram, Integer hd, Float screen, Double price, Integer count) {
@@ -42,7 +32,6 @@ public class Laptop {
 	    public Long getId() {
 	        return id;
 	    }
-
 	    public void setId(Long id) {
 	        this.id = id;
 	    }
@@ -50,7 +39,6 @@ public class Laptop {
 	    public Long getModel() {
 	        return model;
 	    }
-
 	    public void setModel(Long model) {
 	        this.model = model;
 	    }
@@ -58,7 +46,6 @@ public class Laptop {
 	    public Float getSpeed() {
 	        return speed;
 	    }
-
 	    public void setSpeed(Float speed) {
 	        this.speed = speed;
 	    }
@@ -66,7 +53,6 @@ public class Laptop {
 	    public Integer getRam() {
 	        return ram;
 	    }
-
 	    public void setRam(Integer ram) {
 	        this.ram = ram;
 	    }
@@ -74,7 +60,6 @@ public class Laptop {
 	    public Integer getHd() {
 	        return hd;
 	    }
-
 	    public void setHd(Integer hd) {
 	        this.hd = hd;
 	    }
@@ -82,7 +67,6 @@ public class Laptop {
 	    public Float getScreen() {
 	        return screen;
 	    }
-
 	    public void setScreen(Float screen) {
 	        this.screen = screen;
 	    }
@@ -90,7 +74,6 @@ public class Laptop {
 	    public Double getPrice() {
 	        return price;
 	    }
-
 	    public void setPrice(Double price) {
 	        this.price = price;
 	    }
@@ -98,7 +81,6 @@ public class Laptop {
 	    public Integer getCount() {
 	        return count;
 	    }
-
 	    public void setCount(Integer count) {
 	        this.count = count;
 	    }
@@ -107,7 +89,7 @@ public class Laptop {
 	    public String toString() {
 	        return "Laptop{" +
 	                "id=" + id +
-	                ", model='" + getModel() + '\'' +
+	                ", model=" + getModel() +
 	                ", speed=" + speed +
 	                ", ram=" + ram +
 	                ", hd=" + hd +
@@ -115,7 +97,5 @@ public class Laptop {
 	                ", price=" + price +
 	                ", count=" + count +
 	                '}';
-
+	    }
 	}
-
-}

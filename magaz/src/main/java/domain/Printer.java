@@ -49,7 +49,7 @@ public class Printer {
 	        this.model = model;
 	    }
 
-	    public Boolean getColor() {
+	    public Boolean isColor() {
 	        return color;
 	    }
 	    public void setColor(Boolean color) {

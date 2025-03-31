@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest; 
 import jakarta.servlet.http.HttpServletResponse; 
 import java.io.IOException; 
-import java.io.PrintWriter;  
 /** 
  * 
  */ 
@@ -28,15 +27,8 @@ HttpServletResponse response)
   */ 
  protected void doGet(HttpServletRequest request, 
 HttpServletResponse response) throws ServletException, IOException { 
-        response.setContentType("text/html"); 
-        PrintWriter writer = response.getWriter(); 
-        try { 
-            writer.println("<html><body><h2>Привет PCServlet</h2></body></html>"); 
-        } finally { 
-            writer.close();   
-        } 
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("pc.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pc.jsp");
 		dispatcher.forward(request, response);
  
  } 

@@ -63,12 +63,10 @@ pageContext.setAttribute("product", product);
                   <td>${product.gettype()}</td> 
                   <td width="20"><a href="#" role="button" 
                      class="btn btn-outline-primary">  
-                     <img alt="Редактировать" 
-                     src="images/icon-edit.png"></a></td> 
+                     Редактировать</a></td> 
                    <td width="20"><a href="#" role="button" 
                      class="btn btn-outline-primary">  
-                     <img alt="Удалить" 
-                        src="images/icon-delete.png"></a></td> 
+                     Удалить</a></td> 
                   </tr> 
                </c:forEach> 
             </tbody> 

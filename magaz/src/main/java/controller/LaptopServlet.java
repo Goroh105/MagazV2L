@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Servlet implementation class LaptopServlet
@@ -28,15 +27,9 @@ public class LaptopServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html"); 
-        PrintWriter writer = response.getWriter(); 
-        try { 
-            writer.println("<html><body><h2>Привет LaptopServlet</h2></body></html>"); 
-        } finally { 
-            writer.close();   
-        } 
+	
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("laptop.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/laptop.jsp");
 		dispatcher.forward(request, response);
 	}
 
