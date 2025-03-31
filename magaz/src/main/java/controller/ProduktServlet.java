@@ -26,16 +26,10 @@ public class ProduktServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		response.setContentType("text/html"); 
-        PrintWriter writer = response.getWriter(); 
-        try { 
-            writer.println("<html><body><h2>Привет ProductServlet</h2></body></html>"); 
-        } finally { 
-            writer.close();   
-        } 
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product.jsp");
-		dispatcher.forward(request, response);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/view/product.jsp");
+        rd.forward(request, response);
 	}
 
 	/**
