@@ -38,13 +38,13 @@ pageEncoding="UTF-8"%>
     <h2>Продукты магазина</h2> 
      <ul class="list-group list-group-flush"> 
      <li class="list-group-item list-group-item
-primary"><a href="#">Все продукты</a> 
+primary"><a href="/magaz/product">Все продукты</a> 
       <li class="list-group-item list-group-item
-info"><a href="#">Принтеры</a> 
+info"><a href="/magaz/printer">Принтеры</a> 
       <li class="list-group-item list-group-item
-info"><a href="#">Ноутбуки</a> 
+info"><a href="/magaz/laptop">Ноутбуки</a> 
 <li class="list-group-item list-group-item
-info"><a href="#">Компьютеры</a> 
+info"><a href="/magaz/pc">Компьютеры</a> 
      </ul> 
 </div> 
 </div> 

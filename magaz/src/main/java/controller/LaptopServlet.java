@@ -10,13 +10,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Servlet implementation class ProduktServlet
+ * Servlet implementation class LaptopServlet
  */
-@WebServlet("/product")
-public class ProduktServlet extends HttpServlet {
-	 private static final long serialVersionUID = 1L; 
-	
-    public ProduktServlet() {
+@WebServlet("/laptop")
+public class LaptopServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LaptopServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -24,17 +27,16 @@ public class ProduktServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html"); 
         PrintWriter writer = response.getWriter(); 
         try { 
-            writer.println("<html><body><h2>Привет ProductServlet</h2></body></html>"); 
+            writer.println("<html><body><h2>Привет LaptopServlet</h2></body></html>"); 
         } finally { 
             writer.close();   
         } 
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("laptop.jsp");
 		dispatcher.forward(request, response);
 	}
 

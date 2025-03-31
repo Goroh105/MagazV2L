@@ -28,4 +28,16 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/jakarta.servlet.jsp.jstl-3.0.1.jar</name>
+			<type>1</type>
+			<location>C:/Users/User/Downloads/jakarta.servlet.jsp.jstl-3.0.1.jar</location>
+		</link>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-3.0.0.jar</name>
+			<type>1</type>
+			<location>C:/Users/User/Downloads/jakarta.servlet.jsp.jstl-api-3.0.0.jar</location>
+		</link>
+	</linkedResources>
 </projectDescription>
