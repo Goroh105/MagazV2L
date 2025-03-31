@@ -67,8 +67,10 @@ pageContext.setAttribute("laptopList", laptopList);
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Model</th>
-                                <th scope="col">Color</th>
-                                <th scope="col">Type</th>
+                                <th scope="col">Speed</th>
+                                <th scope="col">RAM</th>
+                                <th scope="col">HD</th>
+                                <th scope="col">Screen</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Count</th>
                                 <th scope="col">Редактировать</th>
