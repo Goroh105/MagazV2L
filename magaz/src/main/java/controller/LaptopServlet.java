@@ -7,11 +7,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dao.ConnectionProperty;
 import dao.LaptopDbDAO;
+import dao.ProductDbDAO;
 import domain.Laptop;
+import domain.Product;
 import exception.DAOException;
 
 /**
@@ -46,6 +50,32 @@ public class LaptopServlet extends HttpServlet {
 	        e.printStackTrace();
 	        request.setAttribute("errorMessage", "Ошибка при получении списка PC: " + e.getMessage());
 	    }
+		
+		response.setContentType("text/html");
+	    String userPath;
+	    List<Laptop> laps = null;
+	    Map<String, Product> productMap = null; // Map to store Product data
+
+	    try {
+	        new ConnectionProperty();
+	        LaptopDbDAO lapsDAO = new LaptopDbDAO();
+	        ProductDbDAO productDAO = new ProductDbDAO(); // Create Product DAO
+	        laps = lapsDAO.findAll();
+
+	        // Fetch all products and store them in a map
+	        List<Product> allProducts = productDAO.findAll();
+	        productMap = new HashMap<>();
+	        for (Product product : allProducts) {
+	            productMap.put(product.getmodel(), product);
+	        }
+
+	        request.setAttribute("laps", laps);
+	        request.setAttribute("productMap", productMap); // Set the product map to request
+
+	    } catch (DAOException e) {
+	        e.printStackTrace();
+	        request.setAttribute("errorMessage", "Ошибка при получении списка Laptop: " + e.getMessage());
+	    } 
 
 	        request.getRequestDispatcher("/view/laptop.jsp").forward(request, response);
         

@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 import dao.ConnectionProperty;
-import dao.PCDbDAO;
 import dao.ProductDbDAO;
-import domain.PC;
 import domain.Product;
 import exception.DAOException;
 

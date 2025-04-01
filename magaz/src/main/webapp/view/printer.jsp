@@ -70,12 +70,15 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                                 <th scope="col">Type</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Count</th>
+                                <th scope="col">Maker</th>
+                                <th scope="col">Type</th>
                                 <th scope="col">Редактировать</th>
                                 <th scope="col">Удалить</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="printer" items="${pr}">
+                            <c:set var="product" value="${productMap[printer.model]}" />
                                 <tr>
                                     <td>${printer.getId()}</td>
                                     <td>${printer.getModel()}</td>
@@ -83,6 +86,8 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                                     <td>${printer.getType()}</td>
                                     <td>${printer.getPrice()}</td>
                                     <td>${printer.getCount()}</td>
+                                    <td>${product.getmaker()}</td>
+                                    <td>${product.gettype()}</td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
                                         Редактировать</a></td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">

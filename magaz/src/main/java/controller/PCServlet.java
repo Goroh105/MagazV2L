@@ -5,12 +5,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet; 
 import jakarta.servlet.http.HttpServletRequest; 
 import jakarta.servlet.http.HttpServletResponse; 
-import java.io.IOException; 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dao.ConnectionProperty;
 import dao.PCDbDAO;
+import dao.ProductDbDAO;
 import domain.PC;
+import domain.Product;
 import exception.DAOException;
 /** 
  * 
@@ -32,20 +36,34 @@ public class PCServlet extends HttpServlet {
 HttpServletResponse response) 
   */ 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	try {
+	
+	response.setContentType("text/html");
+    String userPath;
+    List<PC> pcs = null;
+    Map<String, Product> productMap = null; // Map to store Product data
+
+    try {
         new ConnectionProperty();
         PCDbDAO pcDAO = new PCDbDAO();
-        List<PC> pcs = pcDAO.findAll();
-        request.setAttribute("pcs", pcs);
+        ProductDbDAO productDAO = new ProductDbDAO(); // Create Product DAO
+        pcs = pcDAO.findAll();
 
-        System.out.println("Список PC установлен в атрибут: " + (pcs != null ? pcs.size() : "null")); // ADD THIS LINE
+        // Fetch all products and store them in a map
+        List<Product> allProducts = productDAO.findAll();
+        productMap = new HashMap<>();
+        for (Product product : allProducts) {
+            productMap.put(product.getmodel(), product);
+        }
+
+        request.setAttribute("pcs", pcs);
+        request.setAttribute("productMap", productMap); // Set the product map to request
 
     } catch (DAOException e) {
         e.printStackTrace();
         request.setAttribute("errorMessage", "Ошибка при получении списка PC: " + e.getMessage());
-    }
-
-        request.getRequestDispatcher("/view/pc.jsp").forward(request, response);
+    } 
+    request.getRequestDispatcher("/view/pc.jsp").forward(request, response);
+    
    }
  
  /** 

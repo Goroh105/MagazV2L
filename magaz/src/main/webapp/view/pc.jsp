@@ -68,12 +68,15 @@
                                 <th scope="col">CD</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Count</th>
+                                <th scope="col">Maker</th>
+                                <th scope="col">Type</th>
                                 <th scope="col">Редактировать</th>
                                 <th scope="col">Удалить</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="pc" items="${pcs}">
+                             <c:set var="product" value="${productMap[pc.model]}" />
                                 <tr>
                                     <td>${pc.getId()}</td>
                                     <td>${pc.getModel()}</td>
@@ -83,6 +86,8 @@
                                     <td>${pc.getCd()}</td>
                                     <td>${pc.getPrice()}</td>
                                     <td>${pc.getCount()}</td>
+                                    <td>${product.getmaker()}</td>
+                                    <td>${product.gettype()}</td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
                                         Редактировать</a></td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">

@@ -7,11 +7,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dao.ConnectionProperty;
 import dao.PrinterDbDAO;
+import dao.ProductDbDAO;
 import domain.Printer;
+import domain.Product;
 import exception.DAOException;
 
 /**
@@ -34,20 +38,32 @@ public class PrinterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
+		response.setContentType("text/html");
+	    String userPath;
+	    List<Printer> pr = null;
+	    Map<String, Product> productMap = null; // Map to store Product data
+
+	    try {
 	        new ConnectionProperty();
 	        PrinterDbDAO prDAO = new PrinterDbDAO();
-	        List<Printer> pr = prDAO.findAll();
-	        request.setAttribute("pr", pr);
+	        ProductDbDAO productDAO = new ProductDbDAO(); // Create Product DAO
+	        pr = prDAO.findAll();
 
-	        System.out.println("Список Printer установлен в атрибут: " + (pr != null ? pr.size() : "null")); // ADD THIS LINE
+	        // Fetch all products and store them in a map
+	        List<Product> allProducts = productDAO.findAll();
+	        productMap = new HashMap<>();
+	        for (Product product : allProducts) {
+	            productMap.put(product.getmodel(), product);
+	        }
+
+	        request.setAttribute("pr", pr);
+	        request.setAttribute("productMap", productMap); // Set the product map to request
 
 	    } catch (DAOException e) {
 	        e.printStackTrace();
 	        request.setAttribute("errorMessage", "Ошибка при получении списка Printer: " + e.getMessage());
-	    }
-
-	        request.getRequestDispatcher("/view/printer.jsp").forward(request, response);
+	    } 
+	    request.getRequestDispatcher("/view/printer.jsp").forward(request, response);
         
 	}
 

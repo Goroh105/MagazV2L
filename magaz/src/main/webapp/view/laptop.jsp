@@ -68,12 +68,15 @@
                                 <th scope="col">Screen</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Count</th>
+                                <th scope="col">Maker</th>
+                                <th scope="col">Type</th>
                                 <th scope="col">Редактировать</th>
                                 <th scope="col">Удалить</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="laptop" items="${laps}">
+                             <c:set var="product" value="${productMap[laptop.model]}" />
                                 <tr>
                                     <td>${laptop.getId()}</td>
                                     <td>${laptop.getModel()}</td>
@@ -83,6 +86,8 @@
                                     <td><%= ((domain.Laptop) pageContext.findAttribute("laptop")).getScreen() %></td>
                                     <td><%= ((domain.Laptop) pageContext.findAttribute("laptop")).getPrice() %></td>
                                     <td><%= ((domain.Laptop) pageContext.findAttribute("laptop")).getCount() %></td>
+                                    <td>${product.getmaker()}</td>
+                                    <td>${product.gettype()}</td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
                                         Редактировать</a></td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
