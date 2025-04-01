@@ -8,28 +8,6 @@
 <%@ page import="domain.Product"%>
 <%@ page import="domain.Laptop"%>
 
-<%  
-Product r1 = new Product(1L, "Xiaomy", "PC"); 
-Product r2 = new Product(2L, "Hunday", "Laptop"); 
-Product r3= new Product(12L, "Xiaomy", "Printer");
-Product[] product = new Product[]{r1, r2, r3}; 
-
-//Создаем несколько объектов Laptop
-Laptop laptop1 = new Laptop(1L, 1234L, 3.2F, 8, 500, 15.6F, 500.0, 10);
-Laptop laptop2 = new Laptop(2L, 5678L, 2.8F, 4, 250, 14.0F, 800.0, 5);
-Laptop laptop3 = new Laptop(3L, 9012L, 3.5F, 16, 1000, 17.3F, 1200.0, 3);
-Laptop laptop4 = new Laptop(4L, 3456L, 2.5F, 2, 120, 13.3F, 300.0, 15);
-
-// Создаем список объектов Laptop
-List<Laptop> laptopList = new ArrayList<>();
-laptopList.add(laptop1);
-laptopList.add(laptop2);
-laptopList.add(laptop3);
-laptopList.add(laptop4);
-
-// Устанавливаем список в атрибут requestScope, чтобы к нему можно было получить доступ из JSTL
-pageContext.setAttribute("laptopList", laptopList);
-%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +36,23 @@ pageContext.setAttribute("laptopList", laptopList);
 </nav> 
 <!-- /Header -->
 
+ <c:if test="${not empty errorMessage}">
+        <p style="color:red;">${errorMessage}</p>
+    </c:if>
+
+    <%-- ADD THIS BLOCK --%>
+    <%
+    java.util.List laps = (java.util.List) request.getAttribute("laps");
+    if (laps == null) {
+        out.println("<p>Список Laptop не установлен!</p>");
+    } else if (laps.isEmpty()) {
+        out.println("<p>Список Laptop пуст!</p>");
+    } else {
+        out.println("<p>Список Laptop содержит " + laps.size() + " элементов.</p>");
+    }
+    %>
+    <%-- END OF ADDED BLOCK --%>
+
 <div class="container-fluid">
             <div class="row justify-content-start">
                 <div class="col-8 border bg-light px-5">
@@ -78,7 +73,7 @@ pageContext.setAttribute("laptopList", laptopList);
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="laptop" items="${laptopList}">
+                            <c:forEach var="laptop" items="${laps}">
                                 <tr>
                                     <td>${laptop.getId()}</td>
                                     <td>${laptop.getModel()}</td>

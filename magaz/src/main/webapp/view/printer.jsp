@@ -7,24 +7,6 @@
 <%@ page import="domain.Product"%>
 <%@ page import="domain.Printer"%>
 
-<%  
-Product r1 = new Product(1L, "Xiaomy", "PC"); 
-Product r2 = new Product(2L, "Hunday", "Laptop"); 
-Product r3= new Product(12L, "Xiaomy", "Printer");
-Product[] product = new Product[]{r1, r2, r3}; 
-
-Printer p1 = new Printer(1L, 12L, true, "Laser", 150.0, 20);
-Printer p2 = new Printer(2L, 56L, false, "Inkjet", 80.0, 30);
-Printer p3 = new Printer(3L, 90L, true, "3D", 2000.0, 5);
-
-// Используем List вместо массива
-List<Printer> printerList = new ArrayList<>();
-printerList.add(p1);
-printerList.add(p2);
-printerList.add(p3);
-
-pageContext.setAttribute("printerList", printerList);
-%> 
 
 <!DOCTYPE html>
 <html>
@@ -58,6 +40,23 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
 </nav> 
 <!-- /Header -->
 
+    <c:if test="${not empty errorMessage}">
+        <p style="color:red;">${errorMessage}</p>
+    </c:if>
+
+    <%-- ADD THIS BLOCK --%>
+    <%
+    java.util.List pr = (java.util.List) request.getAttribute("pr");
+    if (pr == null) {
+        out.println("<p>Список Printer не установлен!</p>");
+    } else if (pr.isEmpty()) {
+        out.println("<p>Список Printer пуст!</p>");
+    } else {
+        out.println("<p>Список Printer содержит " + pr.size() + " элементов.</p>");
+    }
+    %>
+    <%-- END OF ADDED BLOCK --%>
+
   <div class="container-fluid">
             <div class="row justify-content-start">
                 <div class="col-8 border bg-light px-5">
@@ -76,11 +75,11 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="printer" items="${printerList}">
+                            <c:forEach var="printer" items="${pr}">
                                 <tr>
                                     <td>${printer.getId()}</td>
                                     <td>${printer.getModel()}</td>
-                                    <td>${printer.isColor()}</td>
+                                    <td>${printer.getColor()}</td>
                                     <td>${printer.getType()}</td>
                                     <td>${printer.getPrice()}</td>
                                     <td>${printer.getCount()}</td>

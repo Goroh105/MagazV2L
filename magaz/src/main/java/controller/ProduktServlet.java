@@ -7,6 +7,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import dao.ConnectionProperty;
+import dao.PCDbDAO;
+import dao.ProductDbDAO;
+import domain.PC;
+import domain.Product;
+import exception.DAOException;
 
 /**
  * Servlet implementation class ProduktServlet
@@ -26,9 +34,21 @@ public class ProduktServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
         
+		try {
+	        new ConnectionProperty();
+	        ProductDbDAO proDAO = new ProductDbDAO();
+	        List<Product> pro = proDAO.findAll();
+	        request.setAttribute("pro", pro);
+
+	        System.out.println("Список Product установлен в атрибут: " + (pro != null ? pro.size() : "null")); // ADD THIS LINE
+
+	    } catch (DAOException e) {
+	        e.printStackTrace();
+	        request.setAttribute("errorMessage", "Ошибка при получении списка Product: " + e.getMessage());
+	    }
+
+	        request.getRequestDispatcher("/view/product.jsp").forward(request, response);
         
-        RequestDispatcher rd = request.getRequestDispatcher("/view/product.jsp");
-        rd.forward(request, response);
 	}
 
 	/**

@@ -4,32 +4,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ page import="domain.PC"%>
-<%@ page import="domain.Product"%>
-
-<%  
-Product r1 = new Product(10l, "Xiaomy", "PC"); 
-Product r2 = new Product(57l, "Hunday", "Laptop"); 
-Product r3= new Product(94l, "Xiaomy", "Printer"); 
-Product r4 = new Product(34l, "Samsung", "PC"); 
-Product[] product = new Product[]{r1, r2, r3, r4}; 
-
-//Создаем несколько объектов PC
-PC pc1 = new PC(1L, 10L, 3.2F, 8, 500, "52x", 500.0, 10);
-PC pc2 = new PC(2L, 57L, 2.8F, 4, 250, "48x", 800.0, 5);
-PC pc3 = new PC(3L, 94L, 3.5F, 16, 1000, "DVD", 1200.0, 3);
-PC pc4 = new PC(4L, 34L, 2.5F, 2, 120, "24x", 300.0, 15);
-
-// Создаем список объектов PC
-List<PC> pcList = new ArrayList<>();
-pcList.add(pc1);
-pcList.add(pc2);
-pcList.add(pc3);
-pcList.add(pc4);
-
-// Устанавливаем список в атрибут requestScope, чтобы к нему можно было получить доступ из JSTL
-request.setAttribute("pcList", pcList);
-
-%> 
+<%@ page import="domain.Product"%> 
 
 <!DOCTYPE html>
 <html>
@@ -61,6 +36,23 @@ request.setAttribute("pcList", pcList);
 <!-- /Header -->
 
 
+     <c:if test="${not empty errorMessage}">
+        <p style="color:red;">${errorMessage}</p>
+    </c:if>
+
+    <%-- ADD THIS BLOCK --%>
+    <%
+    java.util.List pcs = (java.util.List) request.getAttribute("pcs");
+    if (pcs == null) {
+        out.println("<p>Список PC не установлен!</p>");
+    } else if (pcs.isEmpty()) {
+        out.println("<p>Список PC пуст!</p>");
+    } else {
+        out.println("<p>Список PC содержит " + pcs.size() + " элементов.</p>");
+    }
+    %>
+    <%-- END OF ADDED BLOCK --%>
+
 <div class="container-fluid">
             <div class="row justify-content-start">
                 <div class="col-8 border bg-light px-4">
@@ -81,7 +73,7 @@ request.setAttribute("pcList", pcList);
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="pc" items="${pcList}">
+                            <c:forEach var="pc" items="${pcs}">
                                 <tr>
                                     <td>${pc.getId()}</td>
                                     <td>${pc.getModel()}</td>

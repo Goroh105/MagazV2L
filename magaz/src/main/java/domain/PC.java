@@ -8,7 +8,7 @@ public class PC {
 	 */
 
 	    private Long id;
-	    private Long model;
+	    private String model;
 	    private Float speed;
 	    private Integer ram;
 	    private Integer hd;
@@ -19,7 +19,7 @@ public class PC {
 	    public PC() {
 	    }
 
-	    public PC(Long model, Float speed, Integer ram, Integer hd, String cd, Double price, Integer count) {
+	    public PC(String model, Float speed, Integer ram, Integer hd, String cd, Double price, Integer count) {
 	        this.model = model;
 	        this.speed = speed;
 	        this.ram = ram;
@@ -29,7 +29,7 @@ public class PC {
 	        this.count = count;
 	    }
 
-	    public PC(Long id, Long model, Float speed, Integer ram, Integer hd, String cd, Double price, Integer count) {
+	    public PC(Long id, String model, Float speed, Integer ram, Integer hd, String cd, Double price, Integer count) {
 	        this.id = id;
 	        this.model = model;
 	        this.speed = speed;
@@ -47,10 +47,10 @@ public class PC {
 	        this.id = id;
 	    }
 
-	    public Long getModel() {
+	    public String getModel() {
 	        return model;
 	    }
-	    public void setModel(Long model) {
+	    public void setModel(String model) {
 	        this.model = model;
 	    }
 
@@ -100,7 +100,7 @@ public class PC {
 	    public String toString() {
 	        return "PC{" +
 	                "id=" + id +
-	                ", model='" + getModel() + '\'' +
+	                ", model='" + model + '\'' +
 	                ", speed=" + speed +
 	                ", ram=" + ram +
 	                ", hd=" + hd +

@@ -1,17 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="jakarta.tags.core"%> 
+<%@ taglib prefix="c" uri="jakarta.tags.core"%> 
 <%@ page import="domain.Product"%>
-
-<%  
-Product r1 = new Product(1l, "Xiaomy", "PC"); 
-Product r2 = new Product(2l, "Hunday", "Laptop"); 
-Product r3= new Product(3l, "Xiaomy", "Printer"); 
-Product r4 = new Product(4l, "Samsung", "PC"); 
-Product[] product = new Product[]{r1, r2, r3, r4}; 
-int length = product.length; 
-pageContext.setAttribute("product", product); 
-%> 
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +34,23 @@ pageContext.setAttribute("product", product);
 </nav> 
 <!-- /Header -->
 
+    <c:if test="${not empty errorMessage}">
+        <p style="color:red;">${errorMessage}</p>
+    </c:if>
+
+    <%-- ADD THIS BLOCK --%>
+    <%
+    java.util.List pro = (java.util.List) request.getAttribute("pro");
+    if (pro == null) {
+        out.println("<p>Список Product не установлен!</p>");
+    } else if (pro.isEmpty()) {
+        out.println("<p>Список Product пуст!</p>");
+    } else {
+        out.println("<p>Список Product содержит " + pro.size() + " элементов.</p>");
+    }
+    %>
+    <%-- END OF ADDED BLOCK --%>
+
   <div class="container-fluid"> 
       <div class="row justify-content-start "> 
         <div class="col-8 border bg-light px-4"> 
@@ -56,7 +63,7 @@ pageContext.setAttribute("product", product);
               <th scope="col">Удалить</th> 
             </thead> 
             <tbody> 
-              <c:forEach var="product" items="${product}"> 
+              <c:forEach var="product" items="${pro}"> 
                 <tr> 
                   <td>${product.getmodel()}</td> 
                   <td>${product.getmaker()}</td> 

@@ -39,5 +39,10 @@
 			<type>1</type>
 			<location>C:/Users/User/Downloads/jakarta.servlet.jsp.jstl-api-3.0.0.jar</location>
 		</link>
+		<link>
+			<name>src/main/webapp/WEB-INF/lib/postgresql-42.5.6.jar</name>
+			<type>1</type>
+			<location>C:/Users/User/Downloads/postgresql-42.5.6.jar</location>
+		</link>
 	</linkedResources>
 </projectDescription>

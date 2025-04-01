@@ -7,7 +7,7 @@ package domain;
 public class Product {
 	
 	// Идентификатор  
-		 private Long model; 
+		 private String model; 
 		 // Наименование производителя
 		 private String maker; 
 		// Тип товара
@@ -20,16 +20,16 @@ public class Product {
 		  this.maker = maker; 
 		 } 
 		  
-		 public Product(Long model, String maker, String type) { 
+		 public Product(String model, String maker, String type) { 
 		  this.model = model; 
 		  this.maker = maker; 
 		  this.type = type;		 } 
 		 
 		 
-		 public Long getmodel() { 
+		 public String getmodel() { 
 		  return model; 
 		 } 
-		 public void setmodel(Long model) { 
+		 public void setmodel(String model) { 
 		  this.model = model; 
 		 } 
 		 
