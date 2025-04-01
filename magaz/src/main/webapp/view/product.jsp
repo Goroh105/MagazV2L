@@ -74,13 +74,29 @@ pageContext.setAttribute("product", product);
         </div> 
         <div class="col-4 border px-4"> 
           <form method="POST" action=""> 
-            <h3>Новая должность</h3> 
+            <h3>Новый продукт</h3> 
             <div class="mb-3"> 
               <br> <label for="inputproduct"  
-              class="col-sm-3 col-form-label">Должность</label> 
+              class="col-sm-3 col-form-label">Модель</label> 
               <div class="col-sm-6"> 
                 <input type="text" name="inputproduct"  
-                  class="form-control" id="personproduct" /> 
+                  class="form-control" id="productmodel" /> 
+            </div> 
+          </div> 
+          <div class="mb-3"> 
+              <br> <label for="inputproduct"  
+              class="col-sm-3 col-form-label">Производитель</label> 
+              <div class="col-sm-6"> 
+                <input type="text" name="inputproduct"  
+                  class="form-control" id="productmaker" /> 
+            </div> 
+          </div> 
+          <div class="mb-3"> 
+              <br> <label for="inputproduct"  
+              class="col-sm-3 col-form-label">Тип товара</label> 
+              <div class="col-sm-6"> 
+                <input type="text" name="inputproduct"  
+                  class="form-control" id="producttype" /> 
             </div> 
           </div> 
           <p> 

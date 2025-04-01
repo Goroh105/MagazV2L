@@ -99,35 +99,47 @@ pageContext.setAttribute("laptopList", laptopList);
                 </div>
                 <div class="col-4 border px-4">
                     <form method="POST" action="">
-                        <h3>Новый принтер</h3>
+                        <h3>Новый ноутбук</h3>
                         <div class="mb-3">
-                            <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
+                        <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
                             <div class="col-sm-6">
-                                <input type="text" name="inputModel" class="form-control" id="printerModel"/>
+                                <input type="text" name="inputModel" class="form-control" id="laptopModel"/>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="inputColor" class="col-sm-3 col-form-label">Color</label>
+                            <label for="inputSpeed" class="col-sm-3 col-form-label">Speed</label>
                             <div class="col-sm-6">
-                                <input type="checkbox" name="inputColor" id="printerColor"/>
+                                <input type="number" step="0.1" name="inputSpeed" class="form-control" id="laptopSpeed"/>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="inputType" class="col-sm-3 col-form-label">Type</label>
+                            <label for="inputRAM" class="col-sm-3 col-form-label">RAM</label>
                             <div class="col-sm-6">
-                                <input type="text" name="inputType" class="form-control" id="printerType"/>
+                                <input type="number" name="inputRAM" class="form-control" id="laptopRAM"/>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputHD" class="col-sm-3 col-form-label">HD</label>
+                            <div class="col-sm-6">
+                                <input type="number" name="inputHD" class="form-control" id="laptopHD"/>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputScreen" class="col-sm-3 col-form-label">Screen</label>
+                            <div class="col-sm-6">
+                                <input type="number" step="0.1" name="inputScreen" class="form-control" id="laptopScreen"/>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="inputPrice" class="col-sm-3 col-form-label">Price</label>
                             <div class="col-sm-6">
-                                <input type="number" step="0.01" name="inputPrice" class="form-control" id="printerPrice"/>
+                                <input type="number" step="0.01" name="inputPrice" class="form-control" id="laptopPrice"/>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="inputCount" class="col-sm-3 col-form-label">Count</label>
                             <div class="col-sm-6">
-                                <input type="number" name="inputCount" class="form-control" id="printerCount"/>
+                                <input type="number" name="inputCount" class="form-control" id="laptopCount"/>
                             </div>
                         </div>
                         <p>
