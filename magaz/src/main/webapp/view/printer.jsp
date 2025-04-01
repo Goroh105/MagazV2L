@@ -31,13 +31,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
 <body>
 
 <!-- Header --> 
-<nav class="navbar navbar-light bg-primary"> 
-<div class="container-fluid"> 
-<a class="navbar-brand" href="#"> 
-</a> 
-<h2>Управление магазином</h2> 
-</div> 
-</nav> 
+<jsp:include page="/view/header.jsp" />
 <!-- /Header -->
 
     <c:if test="${not empty errorMessage}">
@@ -139,16 +133,8 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
     </div>
 
 <!-- Footer --> 
-<footer style="background: #d7d7d7 ; " class="page-footer font
-small black"> 
-<!-- Copyright --> 
-<div class="footer-copyright text-center py-3 px-3" > 
-Демонстрационное веб-приложение JavaEE © 2025 Copyright: 
-<a href="https://dolsoft.com/"> Dolsoft.com</a> 
-</div>  
-<!-- Copyright --> 
-</footer> 
-<!-- /Footer --> 
+<jsp:include page="/view/footer.jsp" />
+<!-- /Footer -->  
 
 </body>
 </html>
