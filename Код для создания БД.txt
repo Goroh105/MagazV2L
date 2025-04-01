@@ -1,0 +1,120 @@
+-- Создание базы данных (если еще не создана)
+CREATE DATABASE IF NOT EXISTS computers_db;
+
+-- Подключаемся к базе данных
+\c computers_db;
+
+-- Создание таблицы Product
+CREATE TABLE Product (
+    model VARCHAR(50) PRIMARY KEY,
+    maker VARCHAR(50) NOT NULL,
+    type VARCHAR(20) NOT NULL CHECK (type IN ('PC', 'Laptop', 'Printer'))
+);
+
+-- Создание таблицы PC
+CREATE TABLE PC (
+    id SERIAL PRIMARY KEY,
+    model VARCHAR(50) REFERENCES Product(model),
+    speed INTEGER NOT NULL,
+    ram INTEGER NOT NULL,
+    hd INTEGER NOT NULL,
+    cd VARCHAR(20),
+    price DECIMAL(10, 2) NOT NULL,
+    count INTEGER NOT NULL
+);
+
+-- Создание таблицы Laptop
+CREATE TABLE Laptop (
+    id SERIAL PRIMARY KEY,
+    model VARCHAR(50) REFERENCES Product(model),
+    speed INTEGER NOT NULL,
+    ram INTEGER NOT NULL,
+    hd INTEGER NOT NULL,
+    screen DECIMAL(4, 1) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    count INTEGER NOT NULL
+);
+
+-- Создание таблицы Printer
+CREATE TABLE Printer (
+    id SERIAL PRIMARY KEY,
+    model VARCHAR(50) REFERENCES Product(model),
+    color BOOLEAN NOT NULL,  -- true для цветного, false для черно-белого
+    type VARCHAR(20) NOT NULL, --например, 'Laser', 'Inkjet'
+    price DECIMAL(10, 2) NOT NULL,
+    count INTEGER NOT NULL
+);
+
+-- Добавление комментариев к таблицам и полям (опционально, но рекомендуется)
+COMMENT ON TABLE Product IS 'Таблица информации о товарах';
+COMMENT ON COLUMN Product.model IS 'Наименование модели (первичный ключ)';
+COMMENT ON COLUMN Product.maker IS 'Производитель';
+COMMENT ON COLUMN Product.type IS 'Тип товара (PC, Laptop, Printer)';
+
+COMMENT ON TABLE PC IS 'Таблица информации о настольных компьютерах';
+COMMENT ON COLUMN PC.id IS 'Суррогатный ключ';
+COMMENT ON COLUMN PC.model IS 'Модель (внешний ключ, ссылка на Product)';
+COMMENT ON COLUMN PC.speed IS 'Быстродействие процессора';
+COMMENT ON COLUMN PC.ram IS 'Объем оперативной памяти';
+COMMENT ON COLUMN PC.hd IS 'Объем памяти жесткого диска';
+COMMENT ON COLUMN PC.cd IS 'Тип CD-диска';
+COMMENT ON COLUMN PC.price IS 'Цена';
+COMMENT ON COLUMN PC.count IS 'Количество на складе';
+
+COMMENT ON TABLE Laptop IS 'Таблица информации о ноутбуках';
+COMMENT ON COLUMN Laptop.id IS 'Суррогатный ключ';
+COMMENT ON COLUMN Laptop.model IS 'Модель (внешний ключ, ссылка на Product)';
+COMMENT ON COLUMN Laptop.speed IS 'Быстродействие процессора';
+COMMENT ON COLUMN Laptop.ram IS 'Объем оперативной памяти';
+COMMENT ON COLUMN Laptop.hd IS 'Объем памяти жесткого диска';
+COMMENT ON COLUMN Laptop.screen IS 'Размер диагонали монитора';
+COMMENT ON COLUMN Laptop.price IS 'Цена';
+COMMENT ON COLUMN Laptop.count IS 'Количество на складе';
+
+COMMENT ON TABLE Printer IS 'Таблица информации о печатающих устройствах';
+COMMENT ON COLUMN Printer.id IS 'Суррогатный ключ';
+COMMENT ON COLUMN Printer.model IS 'Модель (внешний ключ, ссылка на Product)';
+COMMENT ON COLUMN Printer.color IS 'Цветной (true) / Черно-белый (false)';
+COMMENT ON COLUMN Printer.type IS 'Тип печатающего устройства';
+COMMENT ON COLUMN Printer.price IS 'Цена';
+COMMENT ON COLUMN Printer.count IS 'Количество на складе';
+
+-- Заполнение таблицы Product (10 строк)
+INSERT INTO Product (model, maker, type) VALUES
+('PC1001', 'Dell', 'PC'),
+('PC1002', 'HP', 'PC'),
+('PC1003', 'Lenovo', 'PC'),
+('PC1004', 'Acer', 'PC'),
+('PC1005', 'Apple', 'PC'),
+('LP2001', 'Dell', 'Laptop'),
+('LP2002', 'HP', 'Laptop'),
+('PR3001', 'Epson', 'Printer'),
+('PR3002', 'Canon', 'Printer'),
+('PR3003', 'HP', 'Printer');
+
+-- Заполнение таблицы PC (7 строк)
+INSERT INTO PC (model, speed, ram, hd, cd, price, count) VALUES
+('PC1001', 3200, 8, 1000, 'DVD', 750.00, 5),
+('PC1002', 3400, 16, 2000, 'BluRay', 900.00, 3),
+('PC1003', 3000, 4, 500, 'DVD', 600.00, 8),
+('PC1004', 3600, 32, 4000, 'BluRay', 1200.00, 2),
+('PC1005', 3800, 64, 8000, 'BluRay', 2500.00, 1),
+('PC1001', 3200, 16, 1000, 'DVD', 800.00, 2),
+('PC1003', 3000, 8, 500, 'DVD', 650.00, 5);
+
+-- Заполнение таблицы Laptop (6 строк)
+INSERT INTO Laptop (model, speed, ram, hd, screen, price, count) VALUES
+('LP2001', 2800, 8, 500, 15.6, 900.00, 10),
+('LP2002', 3000, 16, 1000, 17.0, 1200.00, 7),
+('LP2001', 2800, 12, 500, 15.6, 950.00, 3),
+('LP2002', 3200, 32, 2000, 17.0, 1500.00, 5),
+('LP2001', 3000, 16, 500, 14.0, 1100.00, 2),
+('LP2002', 3400, 32, 1000, 15.6, 1400.00, 1);
+
+-- Заполнение таблицы Printer (5 строк)
+INSERT INTO Printer (model, color, type, price, count) VALUES
+('PR3001', TRUE, 'Laser', 350.00, 12),
+('PR3002', FALSE, 'Inkjet', 150.00, 15),
+('PR3003', TRUE, 'Inkjet', 250.00, 8),
+('PR3001', FALSE, 'Laser', 300.00, 5),
+('PR3002', TRUE, 'Inkjet', 200.00, 3);
