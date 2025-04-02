@@ -5,7 +5,6 @@ package domain;
  */ 
 
 public class Product {
-	
 	// Идентификатор  
 		 private String model; 
 		 // Наименование производителя

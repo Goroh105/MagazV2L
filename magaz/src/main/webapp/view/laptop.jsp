@@ -82,7 +82,7 @@
                                     <td><%= ((domain.Laptop) pageContext.findAttribute("laptop")).getCount() %></td>
                                     <td>${product.getmaker()}</td>
                                     <td>${product.gettype()}</td>
-                                    <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
+                                    <td width="20"><a href="/editrole?id=${laptop.getId()}" role="button" class="btn btn-outline-primary">
                                         Редактировать</a></td>
                                     <td width="20"><a href="#" role="button" class="btn btn-outline-primary">
                                         Удалить</a></td>

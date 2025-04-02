@@ -58,12 +58,19 @@
                   <td>${product.getmodel()}</td> 
                   <td>${product.getmaker()}</td> 
                   <td>${product.gettype()}</td> 
-                  <td width="20"><a href="#" role="button" 
-                     class="btn btn-outline-primary">  
-                     Редактировать</a></td> 
-                   <td width="20"><a href="#" role="button" 
-                     class="btn btn-outline-primary">  
-                     Удалить</a></td> 
+                  <td width="20">
+<c:if test="${product.model != null}">
+  <a href="editproduct?model=${product.model}&maker=${product.maker}&type=${product.type}" role="button" class="btn btn-outline-primary">Редактировать</a>
+</c:if>
+</td> 
+                   <td width="20">
+            <form method="POST" action="deleteproduct">  
+                <input type="hidden" name="model" value="${product.model}" />
+                <input type="hidden" name="maker" value="${product.maker}" />
+                <input type="hidden" name="type" value="${product.type}" />
+                <button type="submit" class="btn btn-outline-danger">Удалить</button> 
+            </form>
+</td> 
                   </tr> 
                </c:forEach> 
             </tbody> 
