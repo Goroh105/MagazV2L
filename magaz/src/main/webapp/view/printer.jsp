@@ -92,26 +92,38 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                     </table>
                 </div>
                 <div class="col-4 border px-4">
+                
                     <form method="POST" action="">
                         <h3>Новый принтер</h3>
                         <div class="mb-3">
-                            <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
-                            <div class="col-sm-6">
-                                <input type="text" name="inputModel" class="form-control" id="printerModel"/>
-                            </div>
+                              <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
+                                  <div class="col-sm-6">
+                                       <select name="inputModel" class="form-control" id="pcModel">
+                                                   <c:forEach var="entry" items="${productMap}">
+                                                          <option value="${entry.key}">${entry.key}</option>
+                                                   </c:forEach>
+                                        </select>
+                                   </div>
                         </div>
                         <div class="mb-3">
-                            <label for="inputColor" class="col-sm-3 col-form-label">Color</label>
-                            <div class="col-sm-6">
-                                <input type="checkbox" name="inputColor" id="printerColor"/>
-                            </div>
-                        </div>
+    <label for="inputColor" class="col-sm-3 col-form-label">Color</label>
+    <div class="col-sm-6">
+        <select name="inputColor" class="form-control" id="printerColor">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+    </div>
+</div>
                         <div class="mb-3">
-                            <label for="inputType" class="col-sm-3 col-form-label">Type</label>
-                            <div class="col-sm-6">
-                                <input type="text" name="inputType" class="form-control" id="printerType"/>
-                            </div>
-                        </div>
+    <label for="inputType" class="col-sm-3 col-form-label">Type</label>
+    <div class="col-sm-6">
+        <select name="inputType" class="form-control" id="printerType">
+            <option value="Inkjet">Inkjet</option>
+            <option value="Laser">Laser</option>
+            <option value="MFD">MFD</option>
+        </select>
+    </div>
+</div>
                         <div class="mb-3">
                             <label for="inputPrice" class="col-sm-3 col-form-label">Price</label>
                             <div class="col-sm-6">

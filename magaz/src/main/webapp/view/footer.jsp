@@ -6,11 +6,11 @@
 
 <div class="footer">
 <footer style="background: #d7d7d7 ; 
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%; /* Занимает всю ширину */
-  padding: 10px;
+  height: 60px;
+  padding: 2px;
   color:#333;
   text-align: center;
    font-size: 18px;" class="page-footer font

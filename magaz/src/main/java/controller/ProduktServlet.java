@@ -53,9 +53,39 @@ public class ProduktServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// TODO Auto-generated method stub 
 		
+		String model = request.getParameter("inputmodel");
+        String maker = request.getParameter("inputmaker");
+        String type = request.getParameter("inputtype");
+			 //  Проверка на null и пустые строки (опционально, но рекомендуется)
+	        if (model == null || model.isEmpty() || maker == null || maker.isEmpty() || type == null || type.isEmpty()) {
+	            request.setAttribute("errorMessage", "Пожалуйста, заполните все поля.");
+	            doGet(request, response);  //  Вернуться к форме с сообщением об ошибке
+	            return;
+	        }
+
+	        // Создание объекта Product
+	        Product newProduct = new Product();
+	        newProduct.setmodel(model);
+	        newProduct.setmaker(maker);
+	        newProduct.settype(type);
+
+	        // Добавление продукта в базу данных
+	        ProductDbDAO productDAO = null; // Объявляем productDAO вне try
+	        try {
+	             new ConnectionProperty();
+	             productDAO = new ProductDbDAO(); // Создание экземпляра DAO
+	            productDAO.insert(newProduct);
+	            System.out.println("Product added successfully!");
+	        } catch (DAOException e) {
+	            e.printStackTrace();
+	            request.setAttribute("errorMessage", "Ошибка при добавлении продукта: " + e.getMessage());
+	        } finally {
+	            //  Перенаправление на страницу со списком продуктов
+	            doGet(request, response);  //  Или перенаправление на другую страницу
+	        }
 	}
+	
 
 }

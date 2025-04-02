@@ -28,10 +28,6 @@
 <jsp:include page="/view/header.jsp" />
 <!-- /Header -->
 
-    <c:if test="${not empty errorMessage}">
-        <p style="color:red;">${errorMessage}</p>
-    </c:if>
-
     <%-- ADD THIS BLOCK --%>
     <%
     java.util.List pro = (java.util.List) request.getAttribute("pro");
@@ -73,14 +69,15 @@
             </tbody> 
           </table> 
         </div> 
-        <div class="col-4 border px-4"> 
+        <div class="col-4 border px-4">
+        
           <form method="POST" action=""> 
             <h3>Новый продукт</h3> 
             <div class="mb-3"> 
               <br> <label for="inputproduct"  
               class="col-sm-3 col-form-label">Модель</label> 
               <div class="col-sm-6"> 
-                <input type="text" name="inputproduct"  
+                <input type="text" name="inputmodel"  
                   class="form-control" id="productmodel" /> 
             </div> 
           </div> 
@@ -88,25 +85,34 @@
               <br> <label for="inputproduct"  
               class="col-sm-3 col-form-label">Производитель</label> 
               <div class="col-sm-6"> 
-                <input type="text" name="inputproduct"  
+                <input type="text" name="inputmaker"  
                   class="form-control" id="productmaker" /> 
             </div> 
           </div> 
-          <div class="mb-3"> 
-              <br> <label for="inputproduct"  
-              class="col-sm-3 col-form-label">Тип товара</label> 
-              <div class="col-sm-6"> 
-                <input type="text" name="inputproduct"  
-                  class="form-control" id="producttype" /> 
-            </div> 
-          </div> 
+          <div class="mb-3">
+    <br> <label for="inputproduct"
+            class="col-sm-3 col-form-label">Тип товара</label>
+    <div class="col-sm-6">
+        <select name="inputtype" class="form-control" id="producttype">
+            <option value="PC">PC</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Printer">Printer</option>
+        </select>
+    </div>
+</div> 
           <p> 
-            <br> <br> <br> 
+            <br> 
+            <c:if test="${not empty errorMessage}">
+        <p style="color:red;">${errorMessage}</p>
+    </c:if>
+    <br> 
 <button type="submit"  
 class="btn btn-primary">Добавить</button> 
 <br> 
 </p> 
 </form> 
+
+
 </div> 
 </div> 
 </div> 

@@ -92,13 +92,19 @@
                     </table>
                 </div>
                 <div class="col-4 border px-4">
+                
+                
                     <form method="POST" action="">
                         <h3>Новый ноутбук</h3>
                         <div class="mb-3">
-                        <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
-                            <div class="col-sm-6">
-                                <input type="text" name="inputModel" class="form-control" id="laptopModel"/>
-                            </div>
+                              <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
+                                  <div class="col-sm-6">
+                                       <select name="inputModel" class="form-control" id="laptopModel">
+                                                   <c:forEach var="entry" items="${productMap}">
+                                                          <option value="${entry.key}">${entry.key}</option>
+                                                   </c:forEach>
+                                        </select>
+                                   </div>
                         </div>
                         <div class="mb-3">
                             <label for="inputSpeed" class="col-sm-3 col-form-label">Speed</label>
@@ -140,6 +146,8 @@
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </p>
                     </form>
+                    
+                    
                 </div>
             </div>
     </div>

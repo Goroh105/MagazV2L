@@ -30,10 +30,6 @@
 <!-- /Header -->
 
 
-     <c:if test="${not empty errorMessage}">
-        <p style="color:red;">${errorMessage}</p>
-    </c:if>
-
     <%-- ADD THIS BLOCK --%>
     <%
     java.util.List pcs = (java.util.List) request.getAttribute("pcs");
@@ -92,13 +88,19 @@
                     </table>
                 </div>
                 <div class="col-4 border px-4">
+                
+                
                     <form method="POST" action="">
                         <h3>Новый PC</h3>
                         <div class="mb-3">
-                            <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
-                            <div class="col-sm-6">
-                                <input type="text" name="inputModel" class="form-control" id="pcModel"/>
-                            </div>
+                              <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
+                                  <div class="col-sm-6">
+                                       <select name="inputModel" class="form-control" id="pcModel">
+                                                   <c:forEach var="entry" items="${productMap}">
+                                                          <option value="${entry.key}">${entry.key}</option>
+                                                   </c:forEach>
+                                        </select>
+                                   </div>
                         </div>
                         <div class="mb-3">
                             <label for="inputSpeed" class="col-sm-3 col-form-label">Speed</label>
@@ -119,9 +121,12 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="inputCD" class="col-sm-3 col-form-label">CD</label>
+                          <label for="inputCD" class="col-sm-3 col-form-label">CD</label>
                             <div class="col-sm-6">
-                                <input type="text" name="inputCD" class="form-control" id="pcCD"/>
+                                   <select name="inputCD" class="form-control" id="pcCD">
+                                              <option value="DVD">DVD</option>
+                                                <option value="BluRay">BluRay</option>
+                                   </select>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -136,10 +141,17 @@
                                 <input type="number" name="inputCount" class="form-control" id="pcCount"/>
                             </div>
                         </div>
+                        <br>
+                            <c:if test="${not empty errorMessage}">
+                               <p style="color:red;">${errorMessage}</p>
+                            </c:if>
+                        <br>
                         <p>
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </p>
                     </form>
+                    
+                    
                 </div>
             </div>
         </div>

@@ -40,6 +40,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	response.setContentType("text/html");
     String userPath;
     List<PC> pcs = null;
+    
+    
     Map<String, Product> productMap = null; // Map to store Product data
 
     try {
@@ -74,7 +76,38 @@ HttpServletResponse response)
 HttpServletResponse response) throws ServletException, IOException { 
 	 
   // TODO Auto-generated method stub 
-  doGet(request, response); 
+	 
+	 String model = request.getParameter("inputModel");
+     Float speed = Float.parseFloat(request.getParameter("inputSpeed"));
+     Integer ram = Integer.parseInt(request.getParameter("inputRAM"));
+     Integer hd = Integer.parseInt(request.getParameter("inputHD"));
+     String cd = request.getParameter("inputCD");
+     Double price = Double.parseDouble(request.getParameter("inputPrice"));
+     Integer count = Integer.parseInt(request.getParameter("inputCount"));
+
+     PC newPC = new PC();
+     newPC.setModel(model);
+     newPC.setSpeed(speed);
+     newPC.setRam(ram);
+     newPC.setHd(hd);
+     newPC.setCd(cd);
+     newPC.setPrice(price);
+     newPC.setCount(count);
+
+  // Добавление продукта в базу данных
+     PCDbDAO PCDAO = null; // Объявляем productDAO вне try
+     try {
+         new ConnectionProperty();
+         PCDAO = new PCDbDAO();
+         PCDAO.insert(newPC);
+         System.out.println("PC added successfully!");
+     } catch (DAOException e) {
+         e.printStackTrace();
+         request.setAttribute("errorMessage", "Ошибка при добавлении ПК: " + e.getMessage());
+     } finally {
+         //  Перенаправление на страницу со списком продуктов
+         doGet(request, response);  //  Или перенаправление на другую страницу
+     }
  
  } 
  
