@@ -66,8 +66,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                                 <th scope="col">Count</th>
                                 <th scope="col">Maker</th>
                                 <th scope="col">Type</th>
-                                <th scope="col">Редактировать</th>
-                                <th scope="col">Удалить</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,18 +80,6 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                                     <td>${printer.getCount()}</td>
                                     <td>${product.getmaker()}</td>
                                     <td>${product.gettype()}</td>
-                                    <td width="20">
-  <c:if test="${printer.id != null}">
-   <a href="editprinter?action=edit&id=${printer.id}" class="btn btn-primary btn-sm">Редактировать</a>
-</c:if>
-</td>
-                                    <td width="20">
-                        
-                            <form method="POST" action="deleteprinter" style="display:inline;">
-                                <input type="hidden" name="id" value="${printer.id}" />
-                                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
-                            </form>
-</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -101,52 +87,49 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.mi
                 </div>
                 <div class="col-4 border px-4">
                 
-                    <form method="POST" action="">
-                        <h3>Новый принтер</h3>
+                    <form method="POST" action="editprinter">
+                        <h3>Редактирование принтера</h3>
+                        <input type="hidden" name="id" value="${printer.id}">
                         <div class="mb-3">
-                              <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
-                                  <div class="col-sm-6">
-                                       <select name="inputModel" class="form-control" id="pcModel">
-                                                   <c:forEach var="entry" items="${productMap}">
-                                                          <option value="${entry.key}">${entry.key}</option>
-                                                   </c:forEach>
-                                        </select>
-                                   </div>
-                        </div>
+                <label for="inputModel" class="col-sm-3 col-form-label">Model</label>
+                <div class="col-sm-6">
+                    <input type="text" name="inputModel" class="form-control" id="productModel" readonly value="${printer.model}" />
+                </div>
+            </div>
                         <div class="mb-3">
-    <label for="inputColor" class="col-sm-3 col-form-label">Color</label>
-    <div class="col-sm-6">
-        <select name="inputColor" class="form-control" id="printerColor">
-            <option value="true">True</option>
-            <option value="false">False</option>
-        </select>
-    </div>
-</div>
+                <label for="inputColor" class="col-sm-3 col-form-label">Color</label>
+                <div class="col-sm-6">
+                    <select name="inputColor" class="form-control" id="printerColor">
+                        <option value="true" ${printer.color ? 'selected' : ''}>True</option>
+                        <option value="false" ${!printer.color ? 'selected' : ''}>False</option>
+                    </select>
+                </div>
+            </div>
                         <div class="mb-3">
-    <label for="inputType" class="col-sm-3 col-form-label">Type</label>
-    <div class="col-sm-6">
-        <select name="inputType" class="form-control" id="printerType">
-            <option value="Inkjet">Inkjet</option>
-            <option value="Laser">Laser</option>
-            <option value="MFD">MFD</option>
-        </select>
-    </div>
-</div>
+                <label for="inputType" class="col-sm-3 col-form-label">Type</label>
+                <div class="col-sm-6">
+                    <select name="inputType" class="form-control" id="printerType">
+                        <option value="Inkjet" ${printer.type == 'Inkjet' ? 'selected' : ''}>Inkjet</option>
+                        <option value="Laser" ${printer.type == 'Laser' ? 'selected' : ''}>Laser</option>
+                        <option value="MFD" ${printer.type == 'MFD' ? 'selected' : ''}>MFD</option>
+                    </select>
+                </div>
+            </div>
+                        <<div class="mb-3">
+                <label for="inputPrice" class="col-sm-3 col-form-label">Price</label>
+                <div class="col-sm-6">
+                    <input type="number" step="0.01" name="inputPrice" class="form-control" id="printerPrice" value="${printer.price}"/>
+                </div>
+            </div>
                         <div class="mb-3">
-                            <label for="inputPrice" class="col-sm-3 col-form-label">Price</label>
-                            <div class="col-sm-6">
-                                <input type="number" step="0.01" name="inputPrice" class="form-control" id="printerPrice"/>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputCount" class="col-sm-3 col-form-label">Count</label>
-                            <div class="col-sm-6">
-                                <input type="number" name="inputCount" class="form-control" id="printerCount"/>
-                            </div>
-                        </div>
-                        <p>
-                            <button type="submit" class="btn btn-primary">Добавить</button>
-                        </p>
+                <label for="inputCount" class="col-sm-3 col-form-label">Count</label>
+                <div class="col-sm-6">
+                    <input type="number" name="inputCount" class="form-control" id="printerCount" value="${printer.count}"/>
+                </div>
+            </div>
+            <p>
+                <button type="submit" class="btn btn-primary">Сохранить изменения</button> 
+            </p>
                     </form>
                 </div>
             </div>

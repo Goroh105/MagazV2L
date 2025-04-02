@@ -45,7 +45,7 @@ public class PrinterServlet extends HttpServlet {
 
 	    try {
 	        new ConnectionProperty();
-	        PrinterDbDAO prDAO = new PrinterDbDAO();
+	        PrinterDbDAO prDAO = new PrinterDbDAO(null);
 	        ProductDbDAO productDAO = new ProductDbDAO(); // Create Product DAO
 	        pr = prDAO.findAll();
 
@@ -113,7 +113,7 @@ public class PrinterServlet extends HttpServlet {
 
         try {
             new ConnectionProperty();
-            printerDAO = new PrinterDbDAO();
+            printerDAO = new PrinterDbDAO(null);
             printerDAO.insert(newPrinter);
             System.out.println("PC added successfully!");
         } catch (DAOException e) {
